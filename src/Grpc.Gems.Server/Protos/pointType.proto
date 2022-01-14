@@ -1,0 +1,89 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "Grpc.Gems.Server.Protos";
+
+package gems.pointtype.v1;
+
+import "google/protobuf/empty.proto";
+
+service PointTypeService {
+
+/* naming conventions for messages and methods 
+ * https://cloud.google.com/apis/design/naming_convention
+ */
+
+    //get listing of point types
+    rpc ListPointTypes(ListPointTypesRequest) returns (ListPointTypesReponse);
+    
+    //get a specific point type
+    rpc GetPointType(GetPointTypeRequest) returns (PointType);
+
+    //create a point type
+    rpc CreatePointType(CreatePointTypeRequest) returns (PointType);
+
+    //update a point type
+    rpc UpdatePointType(UpdatePointTypeRequest) returns (PointType);
+    
+    //disable the point type
+    rpc DisablePointType(DisablePointTypeRequest) returns (google.protobuf.Empty);
+
+    //enable the point type
+    rpc EnablePointType(EnablePointTypeRequest) returns (google.protobuf.Empty);
+
+    //delete a point type
+    rpc DeletePointType(DeletePointTypeRequest) returns (google.protobuf.Empty);
+}
+
+/* **********
+ * Messages *
+ * **********/
+
+//list point types
+message ListPointTypesRequest {
+    bool is_active = 1;
+}
+
+message ListPointTypesReponse {
+    repeated PointType point_types = 1;
+}
+
+//get specific point type 
+message GetPointTypeRequest {
+    string point_type_id = 1;
+}
+
+//create point type
+message CreatePointTypeRequest {
+    string name = 1;
+    bool is_currency = 2;
+    bool is_leader_board = 3;
+    string meta_data = 4;
+}
+
+//modified point type
+message UpdatePointTypeRequest {
+    PointType point_type = 1;
+}
+
+//disable the point type
+message DisablePointTypeRequest {
+    string user_profile_id = 1;
+}
+
+//enable the point type
+message EnablePointTypeRequest {
+    string user_profile_id = 1;
+}
+
+//delete point type
+message DeletePointTypeRequest {
+    string point_type_id = 1;
+}
+
+message PointType {
+    string point_type_id = 1;
+    string name = 2;
+    bool is_currency = 3;
+    bool is_leader_board = 4;
+    string meta_data = 5;
+}

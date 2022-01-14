@@ -1,0 +1,93 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "Grpc.Gems.Server.Protos";
+
+package gems.userprofile.v1;
+
+import "google/protobuf/empty.proto";
+
+service UserProfileService {
+
+/* naming conventions for messages and methods 
+ * https://cloud.google.com/apis/design/naming_convention
+ */
+    
+     //get listing of user profiles 
+    rpc ListUserProfiles(ListUserProfilesRequest) returns (ListUserProfilesReponse);
+    
+    //get a specific user profile 
+    rpc GetUserProfile(GetUserProfileRequest) returns (UserProfile); 
+
+    //create a user profile 
+    rpc CreateUserProfile(CreateUserProfileRequest) returns (UserProfile);
+
+    //update a user profile 
+    rpc UpdateUserProfile(UpdateUserProfileRequest) returns (UserProfile);
+    
+    //disable the user profile 
+    rpc DisableUserProfile(DisableUserProfileRequest) returns (google.protobuf.Empty);
+
+    //enable the user profile 
+    rpc EnableUserProfile(EnableUserProfileRequest) returns (google.protobuf.Empty);
+
+    //delete a user profile 
+    rpc DeleteUserProfile(DeleteUserProfileRequest) returns (google.protobuf.Empty);
+}
+
+/* **********
+ * Messages *
+ * **********/
+
+message ListUserProfilesRequest {
+    bool is_active = 1;
+}
+
+message ListUserProfilesReponse {
+    repeated UserProfile user_profiles = 1;
+}
+
+//get specific user profile
+message GetUserProfileRequest {
+    string user_profile_id = 1;
+}
+
+//create a user profile
+message CreateUserProfileRequest {
+    string email_addresss = 1;
+    string given_name = 2;
+    string surname = 3;    
+    string display_name = 4;
+    string userId = 5;
+    string meta_data = 6;
+
+}
+
+//modify a user profile
+message UpdateUserProfileRequest {
+    UserProfile user_profile = 1;
+}
+
+//disable the user profile from listings
+message DisableUserProfileRequest {
+    string user_profile_id = 1;
+}
+
+//enable the user profile
+message EnableUserProfileRequest {
+    string user_profile_id = 1;
+}
+
+//delete the user profile from database
+message DeleteUserProfileRequest {
+    string user_profile_id = 1;
+}
+
+message UserProfile {
+    string user_profile_id = 1;
+    string email_addresss = 2;
+    string given_name = 3;
+    string surname = 4;
+    string is_active = 5;
+    string userId = 6;
+    string meta_data = 7;
+}

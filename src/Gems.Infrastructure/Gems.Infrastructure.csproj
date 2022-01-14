@@ -1,0 +1,52 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Features\" />
+    <None Remove="Features\UserProfile\" />
+    <None Remove="Features\PointType\" />
+    <None Remove="Features\UserProfile\CreateUserProfileCommand\" />
+    <None Remove="Features\UserProfile\UpdateUserProfileCommand\" />
+    <None Remove="Features\UserProfile\DisableUserProfileCommand\" />
+    <None Remove="Features\UserProfile\EnableUserProfileCommand\" />
+    <None Remove="Features\UserProfile\DeleteUserProfileCommand\" />
+    <None Remove="Features\UserProfile\ListUserProfilesQuery\" />
+    <None Remove="Features\UserProfile\GetUserProfileQuery\" />
+    <None Remove="MediatR" />
+    <None Remove="FluentValidation" />
+    <None Remove="Microsoft.Extensions.Logging.Abstractions" />
+    <None Remove="Providers\" />
+    <None Remove="CouchbaseNetClient" />
+    <None Remove="Couchbase.Extensions.DependencyInjection" />
+    <None Remove="Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Features\" />
+    <Folder Include="Features\UserProfile\" />
+    <Folder Include="Features\PointType\" />
+    <Folder Include="Features\UserProfile\Create\" />
+    <Folder Include="Features\UserProfile\Update\" />
+    <Folder Include="Features\UserProfile\Disable\" />
+    <Folder Include="Features\UserProfile\Enable\" />
+    <Folder Include="Features\UserProfile\Delete\" />
+    <Folder Include="Features\UserProfile\List\" />
+    <Folder Include="Features\UserProfile\Get\" />
+    <Folder Include="Providers\" />
+    <Folder Include="Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Gems.Core\Gems.Core.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="10.0.1" />
+    <PackageReference Include="FluentValidation" Version="10.3.6" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.0" />
+    <PackageReference Include="CouchbaseNetClient" Version="3.2.6" />
+    <PackageReference Include="Couchbase.Extensions.DependencyInjection" Version="3.2.5" />
+  </ItemGroup>
+</Project>
